@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>hadasweb.com</title>
+  <style>
+    /* Fondo azul cielo + estrellas */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #87ceeb; /* azul cielo */
+      background-image: 
+        url('https://images3.alphacoders.com/559/thumb-1920-559294.jpg'),
+        radial-gradient(white 2px, transparent 3px);
+      background-repeat: no-repeat, repeat;
+      background-position: center, 0 0;
+      background-size: cover, 20px 20px;
+      font-family: 'Georgia', serif;
+      color: #0d3b66; /* azul oscuro */
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Polvo de hadas animado: partículas flotantes */
+    .fairy-dust {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 999;
+      overflow: visible;
+    }
+    .fairy-dust span {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: radial-gradient(circle, #fff8ff 0%, #b0e0ff 60%, transparent 80%);
+      border-radius: 50%;
+      opacity: 0.8;
+      animation-name: floatDust;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+    }
+    @keyframes floatDust {
+      0% {transform: translateY(0) translateX(0) scale(1);}
+      50% {transform: translateY(-15px) translateX(10px) scale(1.3);}
+      100% {transform: translateY(0) translateX(0) scale(1);}
+    }
+
+    /* Navegación mágica */
+    .magical-navbar {
+      background: linear-gradient(to right, #64b5f6, #42a5f5, #90caf9);
+      padding: 25px;
+      text-align: center;
+      font-size: 30px;
+      font-family: 'Lucida Handwriting', cursive;
+      color: white;
+      box-shadow: 0 6px 20px rgba(13, 59, 102, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      text-shadow: 0 0 8px #bbdefb, 0 0 12px #90caf9;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { text-shadow: 0 0 8px #bbdefb, 0 0 12px #90caf9; }
+      50% { text-shadow: 0 0 15px #e1f5fe, 0 0 25px #90caf9; }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3.5em;
+      margin-top: 20px;
+      font-family: 'Brush Script MT', cursive;
+      color: #e3f2fd;
+      padding: 60px 30px;
+      border-radius: 30px;
+      margin-left: 10%;
+      margin-right: 10%;
+      background-image: url('https://images3.alphacoders.com/559/thumb-1920-559294.jpg');
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 0 25px rgba(135, 206, 235, 0.7);
+      text-shadow: 2px 2px 15px #bbdefb;
+      position: relative;
+    }
+    /* Brillos animados alrededor del h1 */
+    h1::before, h1::after {
+      content: '✨';
+      position: absolute;
+      font-size: 2.5em;
+      animation: sparkle 4s linear infinite;
+      color: #bbdefb;
+      text-shadow: 0 0 10px #bbdefb;
+    }
+    h1::before {
+      top: 10px; left: 15%;
+      animation-delay: 0s;
+    }
+    h1::after {
+      bottom: 10px; right: 15%;
+      animation-delay: 2s;
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: rotate(0deg) scale(1);}
+      50% { opacity: 0.3; transform: rotate(20deg) scale(1.3);}
+    }
+
+    .section {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 25px;
+      background: rgba(224, 242, 254, 0.9); /* azul cielo muy claro transparente */
+      border: 3px dashed #64b5f6;
+      border-radius: 25px;
+      box-shadow: 0 0 25px rgba(100, 181, 246, 0.5);
+      color: #0d3b66;
+      position: relative;
+      transition: box-shadow 0.4s ease;
+    }
+    /* Resplandor al pasar mouse sobre secciones */
+    .section:hover {
+      box-shadow: 0 0 40px rgba(100, 181, 246, 0.9);
+    }
+
+    h2::before, h2::after {
+      content: " ✨ ";
+    }
+
+    h2 {
+      text-align: center;
+      color: #1976d2; /* azul */
+      font-size: 2em;
+      margin-bottom: 15px;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      box-shadow: 0 0 15px rgba(25, 118, 210, 0.3);
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #90caf9;
+      text-align: center;
+      font-size: 1.1em;
+      color: #0d3b66;
+      transition: background-color 0.3s ease;
+    }
+    /* Fondo azul suave al pasar mouse en celdas */
+    th:hover, td:hover {
+      background-color: #bbdefb;
+      cursor: default;
+    }
+
+    th {
+      background-color: #bbdefb;
+      color: #0d3b66;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .gallery img {
+      border-radius: 20px;
+      box-shadow: 0 0 15px #64b5f6;
+      width: 200px;
+      height: auto;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      filter: drop-shadow(0 0 5px #a0d8ef);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1) rotate(2deg);
+      box-shadow: 0 0 30px #90caf9, 0 0 15px #64b5f6;
+      filter: drop-shadow(0 0 10px #bbe1ff);
+    }
+
+    a {
+      color: #0d3b66;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease, text-shadow 0.6s ease;
+      animation: subtleGlow 4s ease-in-out infinite;
+    }
+
+    a:hover {
+      color: #1976d2;
+      text-shadow: 0 0 8px #bbdefb, 0 0 15px #90caf9;
+    }
+
+    @keyframes subtleGlow {
+      0%, 100% { text-shadow: none; }
+      50% { text-shadow: 0 0 8px #bbdefb; }
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 20px;
+      background-color: #e3f2fd;
+      border-top: 3px dashed #90caf9;
+      font-family: 'Comic Sans MS', cursive;
+      color: #0d3b66;
+      box-shadow: 0 -3px 15px rgba(135, 206, 235, 0.3);
+      animation: glowPulse 5s ease-in-out infinite;
+    }
+
+    /* Animación texto en movimiento con keyframes para mejor soporte */
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      animation: marquee 15s linear infinite;
+      font-size: 1.3em;
+      color: #0d3b66;
+      font-weight: bold;
+      padding: 10px 0;
+      text-shadow: 0 0 5px #bbdefb;
+      background: rgba(224, 242, 254, 0.6);
+      border-radius: 15px;
+      max-width: 1000px;
+      margin: 0 auto 30px auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    @keyframes marquee {
+      0%   { transform: translateX(100%) }
+      100% { transform: translateX(-100%) }
+    }
+
+    /* Estilo para mapa */
+    .map-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(100, 181, 246, 0.5);
+      border: 3px dashed #64b5f6;
+    }
+
+  </style>
+</head>
+<body>
+
+ 
+  <div class="magical-navbar">
+    ✨ ¡Explora el mágico y asombroso mundo de las hadas! ✨
+  </div>
+
+  <h1>Bienvenidos a hadasweb.com</h1>
+
+  <div class="marquee" aria-label="Texto desplazándose: Descubre la magia de las hadas y la naturaleza encantada">
+    ✨ Descubre la magia de las hadas y la naturaleza encantada mientras exploras este mágico sitio web lleno de misterio y belleza natural ✨
+  </div>
+
+  <div class="section" id="intro">
+    <p><strong><a href="https://es.wikipedia.org/wiki/Hada" target="_blank" rel="noopener">Las hadas</a></strong> son seres mágicos que habitan en <a href="https://www.ecologiaverde.com/bosques-encantados/" target="_blank" rel="noopener"><em>bosques encantados</em></a> y ayudan a cuidar la <a href="https://www.nationalgeographic.es/naturaleza" target="_blank" rel="noopener"><u>naturaleza</u></a>. Se dice que si crees en ellas, puedes llegar a verlas entre las flores.</p>
+    <blockquote style="font-style: italic; font-size: 1.2em; color: #0d3b66;">“Las hadas no desaparecen porque dejen de creer en ellas, sino porque dejamos de escuchar a la <a href="https://www.ecologiaverde.com/que-es-la-naturaleza-2455.html" target="_blank" rel="noopener">naturaleza</a>.”</blockquote>
+  </div>
+
+  <div class="section" id="tipos-hadas">
+    <h2>Tipos de hadas</h2>
+
+    <h3>Tipos populares</h3>
+    <ol>
+      <li><a href="https://es.wikipedia.org/wiki/Hada" target="_blank" rel="noopener">Hada de la luz</a>: Brillan con energía y alegría.</li>
+      <li><a href="https://es.wikipedia.org/wiki/Ninfa" target="_blank" rel="noopener">Hada del agua</a>: Guardianas de ríos y lagos.</li>
+      <li><a href="https://www.ecologiaverde.com/elementales-de-la-tierra/" target="_blank" rel="noopener">Hada de la tierra</a>: Protegen plantas y árboles.</li>
+    </ol>
+
+    <h3>Características encantadoras</h3>
+    <ul>
+      <li><a href="https://es.wikipedia.org/wiki/Ala" target="_blank" rel="noopener">Alas brillantes</a> que destellan en la luz del sol.</li>
+      <li><a href="https://es.wikipedia.org/wiki/Varita_m%C3%A1gica" target="_blank" rel="noopener">Varitas mágicas</a> para lanzar hechizos protectores.</li>
+      <li><a href="https://es.wikipedia.org/wiki/Polvo_de_hadas" target="_blank" rel="noopener">Polvo de estrellas</a> que concede deseos.</li>
+    </ul>
+
+    <h3>Definición mágica</h3>
+    <dl>
+      <dt><strong><a href="https://es.wikipedia.org/wiki/Hada" target="_blank" rel="noopener">Hada</a></strong></dt>
+      <dd>Ser mágico de aspecto humano con <a href="https://www.mundomistico.com/poderes-magicos/" target="_blank" rel="noopener">poderes sobrenaturales</a>.</dd>
+    </dl>
+
+    <p>¿Quieres saber más? Visita este <a href="https://es.wikipedia.org/wiki/Hada" target="_blank" rel="noopener">artículo sobre las hadas</a>.</p>
+  </div>
+
+ <div class="section">
+    <h2>Tabla de tipos de hadas</h2>
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Poder</th>
+      </tr>
+      <tr>
+        <td>Lumina</td>
+        <td>Luz y energía. Puede iluminar los rincones más oscuros del bosque y revitalizar flores con un solo destello.</td>
+      </tr>
+      <tr>
+        <td>Ondina</td>
+        <td>Agua y océanos. Controla las corrientes, limpia los ríos y puede convocar lluvia danzando entre gotas.</td>
+      </tr>
+      <tr>
+        <td>Silvana</td>
+        <td>Tierra y raíces. Protege los árboles antiguos y puede hacer crecer jardines con un susurro al viento.</td>
+      </tr>
+      <tr>
+        <td>Auréa</td>
+        <td>Aire y viento. Desliza mensajes entre brisas suaves y canta melodías que calman a los animales salvajes.</td>
+      </tr>
+      <tr>
+        <td>Estelaria</td>
+        <td>Estrellas y sueños. Guía a los soñadores por caminos mágicos y puede hacer realidad un deseo puro.</td>
+      </tr>
+    </table>
+  </div>
+
+<div class="section" id="video-hadas">
+  <h2>Videos mágicos de hadas</h2>
+
+  <!-- Primer video -->
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 0 25px rgba(100, 181, 246, 0.4); margin-bottom: 30px;">
+    <iframe 
+      src="https://www.youtube.com/embed/V_LrpHEgeGs"
+      frameborder="0" 
+      allowfullscreen 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    </iframe>
+  </div>
+
+  <!-- Segundo video -->
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 0 25px rgba(255, 105, 180, 0.4); margin-bottom: 30px;">
+    <iframe 
+      src="https://www.youtube.com/embed/fpisA7jtw6Y"
+      frameborder="0" 
+      allowfullscreen 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    </iframe>
+  </div>
+
+  <!-- Tercer video -->
+  <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; box-shadow: 0 0 25px rgba(186, 104, 200, 0.4);">
+    <iframe 
+      src="https://www.youtube.com/embed/M2MI97lKhRY"
+      frameborder="0" 
+      allowfullscreen 
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+    </iframe>
+  </div>
+</div>
+
+  <div class="section" id="galeria-hadas">
+    <h2>Galería de hadas</h2>
+    <p style="text-align: center; font-style: italic; color: #0d3b66;">
+      Aquí puedes admirar algunas imágenes encantadas del mundo de las <a href="https://es.wikipedia.org/wiki/Hada" target="_blank" rel="noopener">hadas</a>. Observa sus alas, sus colores y su <a href="https://www.ecologiaverde.com/magia-de-la-naturaleza/" target="_blank" rel="noopener">magia natural</a>.
+    </p>
+    <div class="gallery" role="list">
+      <a href="https://www.viraltrix.com/imagenes-de-hadas-hermosas/" target="_blank" rel="noopener" role="listitem" aria-label="Hada mágica en el bosque">
+        <img src="https://www.viraltrix.com/wp-content/uploads/2016/01/imagenes-de-hadas-3-1440x1080.jpg" alt="Hada mágica en el bosque" />
+      </a>
+      <a href="https://www.imagenesvarias.com/imagenes-de-hadas/" target="_blank" rel="noopener" role="listitem" aria-label="Hada luminosa y mágica">
+        <img src="https://www.imagenesvarias.com/wp-content/uploads/2017/11/Hadas-1-1536x1361.png" alt="Hada luminosa y mágica" />
+      </a>
+      <a href="https://wallpapercave.com/fairy-wallpapers" target="_blank" rel="noopener" role="listitem" aria-label="Fondo de pantalla de hadas">
+        <img src="https://wallpapercave.com/wp/wp8464364.jpg" alt="Fondo de pantalla de hadas" />
+      </a>
+    </div>
+  </div>
+
+   <div class="section" id="mapa-disney">
+    <h2>Ubicación de Disney</h2>
+    <p>Disneyland Park se encuentra en Anaheim, California, Estados Unidos. Aquí puedes ver su ubicación exacta en el mapa interactivo:</p>
+    <div class="map-container" role="region" aria-label="Mapa de Disneyland Park, Anaheim California">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3302.7850939793533!2d-117.9207916847858!3d33.81209258067469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd2d03f4f0a6d3%3A0xf3a50791b582e7a1!2sDisneyland%20Park!5e0!3m2!1ses-419!2smx!4v1686789012345!5m2!1ses-419!2smx" 
+        width="100%" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa de Disneyland Park Anaheim"
+      ></iframe>
+    </div>
+  </div>
+
+  <div class="section" id="conclusion">
+    <h2>Conclusión</h2>
+    <p>Las <a href="https://es.wikipedia.org/wiki/Hada" target="_blank" rel="noopener">hadas</a> nos enseñan a ver la <a href="https://www.nationalgeographic.es/naturaleza" target="_blank" rel="noopener">magia en la naturaleza</a> y en los pequeños detalles. Si abrimos el corazón, quizás podamos escuchar <a href="https://www.poemas-del-alma.com/blog/mostrar-poema-62178" target="_blank" rel="noopener">susurros de polvo de estrellas</a>.</p>
+  </div>
+
+  <footer>
+    Página web hecha por Javi Prins y Flor Guillén ✨
+  </footer>
+
+  <!-- Sección de audio intacta, sin modificaciones -->
+  <section id="audio">
+    <h2></h2>
+    <p>Relájate escuchando sonidos naturales:</p>
+    <audio controls>
+      <source src="C:\Users\Adame\OneDrive\Desktop\img\Salvatore.mp3" type="audio/mpeg">
+    </audio>
+  </section>
+
+ 
+
+</body>
+</html>
+
+
